@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import agh.ics.oop.model.MoveDirection;
+
 public class World {
 
     public static final String START = "system wystartował";
@@ -7,19 +9,25 @@ public class World {
 
     public static void main(String[] args) {
         System.out.println(START);
-        run(args);
+        run(OptionsParser.parse(args));
         System.out.println(STOP);
     }
 
-    public static void run(String[] args) {
-        System.out.println("zwierzak idzie do przodu");
-        for (int i = 0; i < args.length; i++) {
-            System.out.print(args[i]);
-            if (i < args.length - 1) {
+    public static void run(MoveDirection[] moveDirections) {
+        for (int i = 0; i < moveDirections.length; i++) {
+            switch (moveDirections[i]) {
+                case FORWARD -> System.out.print("zwierzak idzie do przodu");
+                case BACKWARD -> System.out.print("zwierzak idzie do tyłu");
+                case RIGHT -> System.out.print("zwierzak idzie w prawo");
+                case LEFT -> System.out.print("zwierzak idzie w lewo");
+                default -> {
+                }
+            }
+            if (i < moveDirections.length - 1) {
                 System.out.print(", ");
             }
+            System.out.println();
         }
-        System.out.println();
     }
 }
 
