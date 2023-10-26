@@ -1,7 +1,7 @@
 package agh.ics.oop.model;
 
 public enum MapDirection {
-    NORTH, SOUTH, WEST, EAST;
+    NORTH, EAST, SOUTH, WEST;
 
     @Override
     public String toString() {
@@ -14,21 +14,23 @@ public enum MapDirection {
     }
 
     public MapDirection next() {
-        return switch (this) {
-            case NORTH -> EAST;
-            case SOUTH -> WEST;
-            case EAST -> SOUTH;
-            case WEST -> NORTH;
-        };
+        MapDirection[] mapDirections = values();
+        int idx = ordinal();
+        int nextIdx = idx + 1;
+        if (nextIdx >= mapDirections.length) {
+            nextIdx = 0;
+        }
+        return mapDirections[nextIdx];
     }
 
     public MapDirection previous() {
-        return switch (this) {
-            case NORTH -> WEST;
-            case SOUTH -> EAST;
-            case EAST -> NORTH;
-            case WEST -> SOUTH;
-        };
+        MapDirection[] mapDirections = values();
+        int idx = ordinal();
+        int nextIdx = idx - 1;
+        if (nextIdx < 0) {
+            nextIdx = mapDirections.length - 1;
+        }
+        return mapDirections[nextIdx];
     }
 
     public Vector2d toUnitVector() {
