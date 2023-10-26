@@ -2,6 +2,8 @@ import agh.ics.oop.OptionsParser;
 import agh.ics.oop.model.MoveDirection;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -10,12 +12,12 @@ public class OptionParserTest {
     public void OptionsParserTest_Parse_ReturnsMoveDirectionList() {
         String[] args = {"f", "dsfsdf", "r", "l"};
 
-        MoveDirection[] moveDirections = OptionsParser.parse(args);
+        List<MoveDirection> moveDirections = OptionsParser.parse(args);
 
-        assertEquals(3, moveDirections.length);
-        assertSame(moveDirections[0], MoveDirection.FORWARD);
-        assertSame(moveDirections[1], MoveDirection.RIGHT);
-        assertSame(moveDirections[2], MoveDirection.LEFT);
+        assertEquals(3, moveDirections.size());
+        assertSame(moveDirections.get(0), MoveDirection.FORWARD);
+        assertSame(moveDirections.get(1), MoveDirection.RIGHT);
+        assertSame(moveDirections.get(2), MoveDirection.LEFT);
     }
 
 }

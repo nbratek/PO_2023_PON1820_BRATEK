@@ -3,6 +3,10 @@ package agh.ics.oop;
 import agh.ics.oop.model.MoveDirection;
 import agh.ics.oop.model.Vector2d;
 
+import java.util.List;
+
+import static agh.ics.oop.model.MoveDirection.*;
+
 public class World {
 
     public static final String START = "system wystartował";
@@ -25,9 +29,9 @@ public class World {
         System.out.println(position1.add(position2));
     }
 
-    public static void run(MoveDirection[] moveDirections) {
-        for (int i = 0; i < moveDirections.length; i++) {
-            switch (moveDirections[i]) {
+    public static void run(List<MoveDirection> moveDirections) {
+        for (int i = 0; i < moveDirections.size(); i++) {
+            switch (moveDirections.get(i)) {
                 case FORWARD -> System.out.print("zwierzak idzie do przodu");
                 case BACKWARD -> System.out.print("zwierzak idzie do tyłu");
                 case RIGHT -> System.out.print("zwierzak idzie w prawo");
@@ -35,7 +39,7 @@ public class World {
                 default -> {
                 }
             }
-            if (i < moveDirections.length - 1) {
+            if (i < moveDirections.size() - 1) {
                 System.out.print(", ");
             }
             System.out.println();
