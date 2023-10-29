@@ -9,15 +9,25 @@ public class Animal {
         this.position = new Vector2d(2, 2);
     }
 
-    @Override
-    public String toString() {
-        return "Zwierzę na pozycji " + position + " skierowane na " + orientation;
-    }
 
     public Animal(Vector2d vector2d) {
         this.orientation = MapDirection.NORTH;
         this.position = vector2d;
     }
+
+    public MapDirection getOrientation() {
+        return orientation;
+    }
+
+    public Vector2d getPosition() {
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        return "Zwierzę na pozycji " + position + " skierowane na " + orientation;
+    }
+
 
     public boolean isAt(Vector2d position) {
         return this.position.equals(position);
