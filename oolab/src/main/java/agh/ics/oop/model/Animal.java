@@ -25,7 +25,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Zwierzę na pozycji " + position + " skierowane na " + orientation;
+        return orientation.toString();
     }
 
 
@@ -33,7 +33,7 @@ public class Animal {
         return this.position.equals(position);
     }
 
-    public void move(MoveDirection direction) {
+    public void move(MoveDirection direction, MoveValidator moveValidator) {
         Vector2d newPosition;
         switch (direction) {
             case FORWARD:
@@ -51,7 +51,7 @@ public class Animal {
             default:
                 return;
         }
-        if (newPosition.precedes(new Vector2d(4, 4)) && newPosition.follows(new Vector2d(0, 0))) {
+        if (moveValidator.canMoveTo(newPosition)) {
             position = newPosition;
         }
     }
