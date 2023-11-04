@@ -9,11 +9,11 @@ public class Animal {
         this.position = new Vector2d(2, 2);
     }
 
-
     public Animal(Vector2d vector2d) {
         this.orientation = MapDirection.NORTH;
         this.position = vector2d;
     }
+
 
     public MapDirection getOrientation() {
         return orientation;

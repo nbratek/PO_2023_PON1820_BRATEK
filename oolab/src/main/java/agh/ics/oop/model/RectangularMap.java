@@ -28,7 +28,7 @@ public class RectangularMap implements WorldMap, MoveValidator {
 
     @Override
     public boolean place(Animal animal) {
-        if(canMoveTo(animal.getPosition())){
+        if(animal != null && canMoveTo(animal.getPosition())){
             animals.put(animal.position, animal);
             return true;
         }
@@ -58,6 +58,9 @@ public class RectangularMap implements WorldMap, MoveValidator {
 
     @Override
     public boolean canMoveTo(Vector2d position) {
+        if (position == null){
+            return false;
+        }
         return position.precedes(new Vector2d(4, 4)) && position.follows(new Vector2d(0, 0)) && !isOccupied(position);
     }
 }
