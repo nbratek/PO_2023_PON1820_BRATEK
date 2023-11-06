@@ -1,7 +1,4 @@
-import agh.ics.oop.model.Animal;
-import agh.ics.oop.model.MapDirection;
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +11,7 @@ public class AnimalTest {
         //when
         String result = animal.toString();
         //then
-        assertEquals(result, "Zwierzę na pozycji (2,2) skierowane na Północ");
+        assertEquals(result, "N");
     }
     @Test
     public void Animal_ToString_ReturnsString_Case2(){
@@ -24,7 +21,7 @@ public class AnimalTest {
         //when
         String result = animal.toString();
         //then
-        assertEquals(result, "Zwierzę na pozycji (3,4) skierowane na Północ");
+        assertEquals(result, "N");
     }
     @Test
     public void Animal_IsAT_ReturnsBoolean_Case1(){
@@ -50,7 +47,8 @@ public class AnimalTest {
     @Test
     public void Animal_Move_ReturnsNothing_Case1(){
         Animal animal = new Animal();
-        animal.move(MoveDirection.BACKWARD);
+        RectangularMap rectangularMap = new RectangularMap(3,3);
+        animal.move(MoveDirection.BACKWARD, rectangularMap);
         assertEquals(animal.getPosition(), new Vector2d(2, 1));
 
     }
@@ -58,7 +56,8 @@ public class AnimalTest {
     @Test
     public void Animal_Move_ReturnsNothing_Case3(){
         Animal animal = new Animal();
-        animal.move(MoveDirection.FORWARD);
+        RectangularMap rectangularMap = new RectangularMap(3,3);
+        animal.move(MoveDirection.FORWARD, rectangularMap);
         assertEquals(animal.getPosition(), new Vector2d(2, 3));
 
     }
@@ -66,14 +65,16 @@ public class AnimalTest {
     @Test
     public void Animal_Move_ReturnsNothing_Case2(){
         Animal animal = new Animal();
-        animal.move(MoveDirection.LEFT);
+        RectangularMap rectangularMap = new RectangularMap(3,3);
+        animal.move(MoveDirection.LEFT, rectangularMap);
         assertEquals(animal.getOrientation(), MapDirection.WEST);
 
     }
     @Test
     public void Animal_Move_ReturnsNothing_Case4(){
         Animal animal = new Animal();
-        animal.move(MoveDirection.RIGHT);
+        RectangularMap rectangularMap = new RectangularMap(3,3);
+        animal.move(MoveDirection.RIGHT, rectangularMap);
         assertEquals(animal.getOrientation(), MapDirection.EAST);
 
     }
