@@ -51,7 +51,7 @@ public class RectangularMapTest {
         rectangularMap.place(animal);
         Vector2d vector2d = new Vector2d(2,2);
         //when
-        Animal result = rectangularMap.objectAt(vector2d);
+        WorldElement result = rectangularMap.objectAt(vector2d);
         //then
         assertNotNull(result);
         assertEquals(result, animal);
@@ -66,7 +66,7 @@ public class RectangularMapTest {
         rectangularMap.place(animal);
         Vector2d vector2d = new Vector2d(3,2);
         //when
-        Animal result = rectangularMap.objectAt(vector2d);
+        WorldElement result = rectangularMap.objectAt(vector2d);
         //then
         assertNull(result);
     }
@@ -79,7 +79,7 @@ public class RectangularMapTest {
         rectangularMap.place(animal);
         Vector2d vector2d = null;
         //when
-        Animal result = rectangularMap.objectAt(vector2d);
+        WorldElement result = rectangularMap.objectAt(vector2d);
         //then
         assertNull(result);
     }
