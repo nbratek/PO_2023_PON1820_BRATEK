@@ -1,5 +1,7 @@
 package agh.ics.oop.model;
 
+import java.util.List;
+
 /**
  * The interface responsible for interacting with the map of the world.
  * Assumes that Vector2d and MoveDirection classes are defined.
@@ -34,11 +36,18 @@ public interface WorldMap {
     boolean isOccupied(Vector2d position);
 
     /**
-     * Return an animal at a given position.
+     * Return a WorldElement at a given position.
      *
-     * @param position The position of the animal.
-     * @return animal or null if the position is not occupied.
+     * @param position The position of the WorldElement.
+     * @return WorldElement or null if the position is not occupied.
      */
-    Animal objectAt(Vector2d position);
+    WorldElement objectAt(Vector2d position);
+
+    /**
+     * Return a WorldElement List.
+     *
+     * @return WorldElement List.
+     */
+    List<WorldElement> getElements();
 
 }
