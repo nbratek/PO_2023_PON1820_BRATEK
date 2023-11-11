@@ -1,6 +1,8 @@
 import agh.ics.oop.model.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangularMapTest {
@@ -212,5 +214,35 @@ public class RectangularMapTest {
         assertEquals(animal.getPosition(), new Vector2d(2,2));
         assertEquals(animal.getOrientation(), MapDirection.EAST);
     }
+
+    @Test
+    public void RectangularMap_GetLowerLeft_ReturnsVector2d(){
+        RectangularMap rectangularMap = new RectangularMap(4,4);
+        Vector2d result = rectangularMap.getLowerLeft();
+        assertEquals(result, new Vector2d(0,0));
+    }
+    @Test
+    public void RectangularMap_GetUpperRight_ReturnsVector2d(){
+        RectangularMap rectangularMap = new RectangularMap(4,4);
+        Vector2d result = rectangularMap.getUpperRight();
+        assertEquals(result, new Vector2d(4,4));
+    }
+
+    @Test
+    public void RectangularMap_GetElements_ReturnsWorldElementList() {
+        RectangularMap rectangularMap = new RectangularMap(4,4);
+        Animal animal1 = new Animal();
+        Animal animal2 = new Animal(new Vector2d(2,3));
+        Animal animal3 = new Animal(new Vector2d(3, 2));
+        rectangularMap.place(animal1);
+        rectangularMap.place(animal2);
+        rectangularMap.place(animal3);
+
+        List<WorldElement> result = rectangularMap.getElements();
+
+        assertNotNull(result);
+        assertEquals(result.size(), 3);
+    }
 }
+
 

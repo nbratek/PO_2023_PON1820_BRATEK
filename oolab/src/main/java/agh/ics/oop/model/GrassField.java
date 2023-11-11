@@ -16,6 +16,12 @@ public class GrassField extends AbstractWorldMap {
         init();
     }
 
+    @Override
+    public List<WorldElement> getElements() {
+        List<WorldElement> worldElements = super.getElements();
+        worldElements.addAll(grassList);
+        return worldElements;
+    }
 
     private void init() {
         Random random = new Random();
