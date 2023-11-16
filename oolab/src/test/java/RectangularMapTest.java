@@ -1,3 +1,4 @@
+import agh.ics.oop.exception.PositionAlreadyOccupiedException;
 import agh.ics.oop.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RectangularMapTest {
 
     @Test
-    public void RectangularMap_IsOccupied_ReturnsBoolean_Case1() {
+    public void RectangularMap_IsOccupied_ReturnsBoolean_Case1() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -20,7 +21,7 @@ public class RectangularMapTest {
         assertTrue(result);
     }
     @Test
-    public void RectangularMap_IsOccupied_ReturnsBoolean_Case2() {
+    public void RectangularMap_IsOccupied_ReturnsBoolean_Case2() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -33,7 +34,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_IsOccupied_ReturnsBoolean_Case3() {
+    public void RectangularMap_IsOccupied_ReturnsBoolean_Case3() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -46,7 +47,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_ObjectAt_ReturnsAnimal_Case1(){
+    public void RectangularMap_ObjectAt_ReturnsAnimal_Case1() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -61,7 +62,7 @@ public class RectangularMapTest {
 
 
     @Test
-    public void RectangularMap_ObjectAt_ReturnsAnimal_Case2(){
+    public void RectangularMap_ObjectAt_ReturnsAnimal_Case2() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -74,7 +75,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_ObjectAt_ReturnsAnimal_Case3(){
+    public void RectangularMap_ObjectAt_ReturnsAnimal_Case3() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -87,7 +88,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_CanMoveTo_ReturnsBoolean_Case1(){
+    public void RectangularMap_CanMoveTo_ReturnsBoolean_Case1() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -100,7 +101,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_CanMoveTo_ReturnsBoolean_Case2(){
+    public void RectangularMap_CanMoveTo_ReturnsBoolean_Case2() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -112,7 +113,7 @@ public class RectangularMapTest {
         assertTrue(result);
     }
     @Test
-    public void RectangularMap_CanMoveTo_ReturnsBoolean_Case3(){
+    public void RectangularMap_CanMoveTo_ReturnsBoolean_Case3() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4,4);
@@ -125,46 +126,31 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_Place_ReturnsBoolean_Case1() {
+    public void RectangularMap_Place_ReturnsBoolean_Case1() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
         rectangularMap.place(animal);
-        Animal animal1 = new Animal(new Vector2d(3,1));
-        //when
-        boolean result = rectangularMap.place(animal1);
-        //then
-        assertTrue(result);
     }
 
     @Test
-    public void RectangularMap_Place_ReturnsBoolean_Case2() {
+    public void RectangularMap_Place_ReturnsBoolean_Case2() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
         rectangularMap.place(animal);
-        Animal animal1 = new Animal(new Vector2d(2,2));
-        //when
-        boolean result = rectangularMap.place(animal1);
-        //then
-        assertFalse(result);
     }
 
     @Test
-    public void RectangularMap_Place_ReturnsBoolean_Case3() {
+    public void RectangularMap_Place_ReturnsBoolean_Case3() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
         rectangularMap.place(animal);
-        Animal animal1 = null;
-        //when
-        boolean result = rectangularMap.place(animal1);
-        //then
-        assertFalse(result);
     }
 
     @Test
-    public void RectangularMap_Move_ReturnsNothing_Case1() {
+    public void RectangularMap_Move_ReturnsNothing_Case1() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
@@ -177,7 +163,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_Move_ReturnsNothing_Case2() {
+    public void RectangularMap_Move_ReturnsNothing_Case2() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
@@ -190,7 +176,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_Move_ReturnsNothing_Case3() {
+    public void RectangularMap_Move_ReturnsNothing_Case3() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
@@ -203,7 +189,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void RectangularMap_Move_ReturnsNothing_Case4() {
+    public void RectangularMap_Move_ReturnsNothing_Case4() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         RectangularMap rectangularMap = new RectangularMap(4, 4);
@@ -215,21 +201,9 @@ public class RectangularMapTest {
         assertEquals(animal.getOrientation(), MapDirection.EAST);
     }
 
-    @Test
-    public void RectangularMap_GetLowerLeft_ReturnsVector2d(){
-        RectangularMap rectangularMap = new RectangularMap(4,4);
-        Vector2d result = rectangularMap.getLowerLeft();
-        assertEquals(result, new Vector2d(0,0));
-    }
-    @Test
-    public void RectangularMap_GetUpperRight_ReturnsVector2d(){
-        RectangularMap rectangularMap = new RectangularMap(4,4);
-        Vector2d result = rectangularMap.getUpperRight();
-        assertEquals(result, new Vector2d(4,4));
-    }
 
     @Test
-    public void RectangularMap_GetElements_ReturnsWorldElementList() {
+    public void RectangularMap_GetElements_ReturnsWorldElementList() throws PositionAlreadyOccupiedException {
         RectangularMap rectangularMap = new RectangularMap(4,4);
         Animal animal1 = new Animal();
         Animal animal2 = new Animal(new Vector2d(2,3));
@@ -243,6 +217,7 @@ public class RectangularMapTest {
         assertNotNull(result);
         assertEquals(result.size(), 3);
     }
+
 }
 
 

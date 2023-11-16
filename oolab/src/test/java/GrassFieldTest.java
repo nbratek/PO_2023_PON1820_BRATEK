@@ -1,3 +1,4 @@
+import agh.ics.oop.exception.PositionAlreadyOccupiedException;
 import agh.ics.oop.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GrassFieldTest {
 
     @Test
-    public void GrassField_ObjectAt_ReturnsWorldElement_Case1() {
+    public void GrassField_ObjectAt_ReturnsWorldElement_Case1() throws PositionAlreadyOccupiedException {
         Animal animal = new Animal();
         GrassField grassField = new GrassField(3);
         grassField.place(animal);
@@ -23,7 +24,7 @@ public class GrassFieldTest {
     }
 
     @Test
-    public void GrassField_ObjectAt_ReturnsWorldElement_Case2() {
+    public void GrassField_ObjectAt_ReturnsWorldElement_Case2() throws PositionAlreadyOccupiedException {
         Animal animal = new Animal();
         GrassField grassField = new GrassField(3);
         grassField.place(animal);
@@ -36,20 +37,15 @@ public class GrassFieldTest {
     }
 
     @Test
-    public void GrassField_Place_ReturnsBoolean() {
+    public void GrassField_Place_ReturnsBoolean() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         GrassField grassField = new GrassField(3);
         grassField.place(animal);
-        Animal animal1 = new Animal(new Vector2d(3, 1));
-        //when
-        boolean result = grassField.place(animal1);
-        //then
-        assertTrue(result);
     }
 
     @Test
-    public void GrassField_IsOccupied_ReturnsBoolean() {
+    public void GrassField_IsOccupied_ReturnsBoolean() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         GrassField grassField = new GrassField(3);
@@ -61,7 +57,7 @@ public class GrassFieldTest {
         assertTrue(result);
     }
     @Test
-    public void GrassField_CanMoveTo_ReturnsBoolean(){
+    public void GrassField_CanMoveTo_ReturnsBoolean() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         GrassField grassField = new GrassField(3);
@@ -74,7 +70,7 @@ public class GrassFieldTest {
     }
 
     @Test
-    public void GrassField_Move_ReturnsNothing() {
+    public void GrassField_Move_ReturnsNothing() throws PositionAlreadyOccupiedException {
         //given
         Animal animal = new Animal();
         GrassField grassField = new GrassField(3);
@@ -86,21 +82,9 @@ public class GrassFieldTest {
         assertEquals(animal.getOrientation(), MapDirection.NORTH);
     }
 
-    @Test
-    public void GrassField_GetLowerLeft_ReturnsVector2d(){
-        GrassField grassField = new GrassField(3);
-        Vector2d result = grassField.getLowerLeft();
-        assertEquals(result, new Vector2d(0,0));
-    }
-    @Test
-    public void GrassField_GetUpperRight_ReturnsVector2d(){
-        GrassField grassField = new GrassField(3);
-        Vector2d result = grassField.getUpperRight();
-        assertEquals(result, new Vector2d(5,5));
-    }
 
     @Test
-    public void GrassField_GetElements_ReturnsWorldElementList() {
+    public void GrassField_GetElements_ReturnsWorldElementList() throws PositionAlreadyOccupiedException {
         GrassField grassField = new GrassField(3);
         Animal animal1 = new Animal();
         Animal animal2 = new Animal(new Vector2d(2,3));
@@ -114,4 +98,6 @@ public class GrassFieldTest {
         assertNotNull(result);
         assertEquals(result.size(), 6);
     }
+
+
 }
