@@ -14,6 +14,9 @@ public class SimulationTest {
         List<MoveDirection> moveDirectionList = List.of(MoveDirection.FORWARD, MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.BACKWARD);
         List<Vector2d> positionList = List.of(new Vector2d(2, 2), new Vector2d(1, 2));
         RectangularMap rectangularMap = new RectangularMap(4,4);
+        rectangularMap.addObserver(new ConsoleMapDisplay());
+        rectangularMap.addObserver(new ConsoleMapDisplay());
+        rectangularMap.addObserver(new ConsoleMapDisplay());
         Simulation simulation = new Simulation(rectangularMap, positionList, moveDirectionList);
         //When
         simulation.run();
@@ -28,6 +31,9 @@ public class SimulationTest {
         List<MoveDirection> moveDirectionList = List.of(MoveDirection.FORWARD, MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.BACKWARD);
         List<Vector2d> positionList = List.of(new Vector2d(2, 2), new Vector2d(1, 2), new Vector2d(2, 1));
         RectangularMap rectangularMap = new RectangularMap(4,4);
+        rectangularMap.addObserver(new ConsoleMapDisplay());
+        rectangularMap.addObserver(new ConsoleMapDisplay());
+        rectangularMap.addObserver(new ConsoleMapDisplay());
         Simulation simulation = new Simulation(rectangularMap, positionList, moveDirectionList);
         //When
         simulation.run();
