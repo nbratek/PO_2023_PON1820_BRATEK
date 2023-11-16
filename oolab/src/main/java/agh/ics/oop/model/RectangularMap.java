@@ -24,12 +24,7 @@ public class RectangularMap extends AbstractWorldMap {
     }
 
     @Override
-    public Vector2d getLowerLeft() {
-        return new Vector2d(0,0);
-    }
-
-    @Override
-    public Vector2d getUpperRight() {
-        return new Vector2d(4,4);
+    public Boundary getCurrentBounds() {
+        return new Boundary(new Vector2d(0,0), new Vector2d(4,4));
     }
 }
