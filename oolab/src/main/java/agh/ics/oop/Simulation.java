@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import agh.ics.oop.exception.PositionAlreadyOccupiedException;
 import agh.ics.oop.model.Animal;
 import agh.ics.oop.model.MoveDirection;
 import agh.ics.oop.model.Vector2d;
@@ -25,7 +26,13 @@ public class Simulation {
     }
 
     public void run() {
-        animalList.forEach(worldMap::place);
+        animalList.forEach(animal -> {
+            try {
+                worldMap.place(animal);
+            } catch (PositionAlreadyOccupiedException e) {
+                System.out.println(e.getMessage());
+            }
+        });
         System.out.println(worldMap);
         for (int i = 0; i < moveDirectionsList.size(); i++) {
             int animalIdx = i % animalList.size();

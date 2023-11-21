@@ -53,14 +53,10 @@ public class GrassField extends AbstractWorldMap {
     }
 
     @Override
-    public Vector2d getLowerLeft() {
-        return new Vector2d(0, 0);
+    public Boundary getCurrentBounds() {
+        return new Boundary(new Vector2d(0,0), new Vector2d((int) Math.sqrt(grassCount * 10), (int) Math.sqrt(grassCount * 10))) ;
     }
 
-    @Override
-    public Vector2d getUpperRight() {
-        return new Vector2d((int) Math.sqrt(grassCount * 10), (int) Math.sqrt(grassCount * 10));
-    }
 
     @Override
     public boolean canMoveTo(Vector2d position) {

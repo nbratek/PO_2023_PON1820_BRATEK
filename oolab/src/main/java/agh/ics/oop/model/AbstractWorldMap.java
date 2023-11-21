@@ -1,5 +1,6 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.exception.PositionAlreadyOccupiedException;
 import agh.ics.oop.model.util.MapVisualizer;
 
 import java.util.ArrayList;
@@ -10,18 +11,34 @@ import java.util.Map;
 public abstract class AbstractWorldMap implements WorldMap, MoveValidator {
 
     protected final Map<Vector2d, Animal> animals;
+    private final List<MapChangeListener> listeners;
 
     protected AbstractWorldMap() {
+
         this.animals = new HashMap<>();
+        this.listeners = new ArrayList<>();
+    }
+
+    public void addObserver(MapChangeListener observer) {
+        listeners.add(observer);
+    }
+    public void removeObserver(MapChangeListener observer) {
+        listeners.remove(observer);
+    }
+    public void notifyObservers(String message) {
+        for(MapChangeListener mapChangeListener: listeners){
+            mapChangeListener.mapChanged(this, message);
+        }
     }
 
     @Override
-    public boolean place(Animal animal) {
+    public void place(Animal animal) throws PositionAlreadyOccupiedException {
         if (animal != null && canMoveTo(animal.getPosition())) {
-            animals.put(animal.position, animal);
-            return true;
+            animals.put(animal.getPosition(), animal);
+            notifyObservers("animal placed on " + animal.getPosition());
+            return;
         }
-        return false;
+        throw new PositionAlreadyOccupiedException(animal.getPosition());
     }
 
     @Override
@@ -32,6 +49,7 @@ public abstract class AbstractWorldMap implements WorldMap, MoveValidator {
         if (!oldPosition.equals(newPosition)) {
             animals.remove(oldPosition);
             animals.put(newPosition, animal);
+            notifyObservers("animal moved to " + newPosition);
         }
     }
 
@@ -47,10 +65,9 @@ public abstract class AbstractWorldMap implements WorldMap, MoveValidator {
 
     @Override
     public String toString() {
-        Vector2d lowerLeft = getLowerLeft();
-        Vector2d upperRight = getUpperRight();
+        Boundary boundary = getCurrentBounds();
         MapVisualizer mapVisualizer = new MapVisualizer(this);
-        return mapVisualizer.draw(lowerLeft, upperRight);
+        return mapVisualizer.draw(boundary.lowerLeft(), boundary.upperRight());
     }
 
     @Override
@@ -58,9 +75,8 @@ public abstract class AbstractWorldMap implements WorldMap, MoveValidator {
         return new ArrayList<>(animals.values());
     }
 
-    public abstract Vector2d getLowerLeft();
 
-    public abstract Vector2d getUpperRight();
+    public abstract Boundary getCurrentBounds();
 
 
 }

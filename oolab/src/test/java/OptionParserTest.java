@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public class OptionParserTest {
     @Test
     public void OptionsParserTest_Parse_ReturnsMoveDirectionList() {
-        String[] args = {"f", "dsfsdf", "r", "l"};
+        String[] args = {"f", "r", "l"};
 
         List<MoveDirection> moveDirections = OptionsParser.parse(args);
 
