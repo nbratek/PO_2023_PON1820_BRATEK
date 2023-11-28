@@ -3,6 +3,7 @@ package agh.ics.oop.model;
 import agh.ics.oop.exception.PositionAlreadyOccupiedException;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The interface responsible for interacting with the map of the world.
@@ -51,5 +52,12 @@ public interface WorldMap {
      * @return WorldElement List.
      */
     List<WorldElement> getElements();
+
+    /**
+     * Return an UUID.
+     *
+     * @return UUID.
+     */
+    UUID getId();
 
 }

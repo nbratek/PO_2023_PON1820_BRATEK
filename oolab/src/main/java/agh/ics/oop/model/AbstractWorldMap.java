@@ -3,20 +3,24 @@ package agh.ics.oop.model;
 import agh.ics.oop.exception.PositionAlreadyOccupiedException;
 import agh.ics.oop.model.util.MapVisualizer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class AbstractWorldMap implements WorldMap, MoveValidator {
 
     protected final Map<Vector2d, Animal> animals;
     private final List<MapChangeListener> listeners;
 
-    protected AbstractWorldMap() {
+    private final UUID id;
 
+    protected AbstractWorldMap() {
+        this.id = UUID.randomUUID();
         this.animals = new HashMap<>();
         this.listeners = new ArrayList<>();
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
     }
 
     public void addObserver(MapChangeListener observer) {

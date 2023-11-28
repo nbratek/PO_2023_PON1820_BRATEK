@@ -1,10 +1,8 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.Animal;
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.RectangularMap;
-import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class World {
@@ -32,9 +30,21 @@ public class World {
 
         List<MoveDirection> directions = OptionsParser.parse(args);
         List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
-        RectangularMap rectangularMap = new RectangularMap(4,4);
-        Simulation simulation = new Simulation(rectangularMap, positions, directions);
-        simulation.run();
+
+
+
+        //lab7
+        List<Simulation> simulationList = new ArrayList<>();
+        for(int i = 0;i < 100; i++){
+             RectangularMap rectangularMap = new RectangularMap(4,4);
+             ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
+             rectangularMap.addObserver(consoleMapDisplay);
+             simulationList.add(new Simulation(rectangularMap, positions, directions));
+
+        }
+        SimulationEngine simulationEngine = new SimulationEngine(simulationList);
+        simulationEngine.runAsyncInThreadPool();
+
     }
 
     public static void run(List<MoveDirection> moveDirections) {
