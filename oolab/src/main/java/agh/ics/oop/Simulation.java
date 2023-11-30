@@ -26,21 +26,26 @@ public class Simulation {
     }
 
     public void run() {
-        animalList.forEach(animal -> {
-            try {
-                worldMap.place(animal);
-            } catch (PositionAlreadyOccupiedException e) {
-                System.out.println(e.getMessage());
-            }
-        });
-        System.out.println(worldMap);
-        for (int i = 0; i < moveDirectionsList.size(); i++) {
-            int animalIdx = i % animalList.size();
-            Animal animal = animalList.get(animalIdx);
-            MoveDirection moveDirection = moveDirectionsList.get(i);
-            worldMap.move(animal, moveDirection);
+        try {
+            animalList.forEach(animal -> {
+                try {
+                    worldMap.place(animal);
+                } catch (PositionAlreadyOccupiedException e) {
+                    System.out.println(e.getMessage());
+                }
+            });
             System.out.println(worldMap);
-        }
+            for (int i = 0; i < moveDirectionsList.size(); i++) {
+                int animalIdx = i % animalList.size();
+                Animal animal = animalList.get(animalIdx);
+                MoveDirection moveDirection = moveDirectionsList.get(i);
+                worldMap.move(animal, moveDirection);
+                Thread.sleep(500);
+                System.out.println(worldMap);
+
+            }
+        } catch (InterruptedException ignored) {}
+
     }
 
     private List<Animal> initAnimalList(List<Vector2d> positionList) {
