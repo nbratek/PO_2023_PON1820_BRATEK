@@ -29,7 +29,7 @@ public class SimulationEngine {
             threads.add(thread);
             thread.start();
         }
-        awaitSimulationsEnd(threads);
+   //     awaitSimulationsEnd(threads);
     }
 
     public void awaitSimulationsEnd(List<Thread> threads){

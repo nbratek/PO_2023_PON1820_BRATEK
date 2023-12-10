@@ -27,21 +27,21 @@ public class Simulation {
 
     public void run() {
         try {
-            animalList.forEach(animal -> {
+            for(Animal animal : animalList) {
                 try {
                     worldMap.place(animal);
+                    Thread.sleep(400);
                 } catch (PositionAlreadyOccupiedException e) {
                     System.out.println(e.getMessage());
                 }
-            });
-            System.out.println(worldMap);
-            for (int i = 0; i < moveDirectionsList.size(); i++) {
-                int animalIdx = i % animalList.size();
-                Animal animal = animalList.get(animalIdx);
-                MoveDirection moveDirection = moveDirectionsList.get(i);
-                worldMap.move(animal, moveDirection);
-                Thread.sleep(500);
-                System.out.println(worldMap);
+            }
+
+            for (MoveDirection direction : moveDirectionsList){
+                for (Animal animal: animalList) {
+                    worldMap.move(animal, direction);
+                    Thread.sleep(400);
+
+                }
 
             }
         } catch (InterruptedException ignored) {}
@@ -49,9 +49,12 @@ public class Simulation {
     }
 
     private List<Animal> initAnimalList(List<Vector2d> positionList) {
+        String[] symbols = {"x", "?", "!", "o", ">", "<"};
         List<Animal> animals = new ArrayList<>();
+        int i = 0;
         for (Vector2d vector2d : positionList) {
-            animals.add(new Animal(vector2d));
+            animals.add(new Animal(vector2d, symbols[i% symbols.length]));
+            i++;
         }
         return animals;
     }

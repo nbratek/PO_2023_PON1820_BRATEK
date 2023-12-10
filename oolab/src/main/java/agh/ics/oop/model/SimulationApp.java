@@ -21,7 +21,7 @@ public class SimulationApp extends Application {
         BorderPane viewRoot = loader.load();
         SimulationPresenter presenter = loader.getController();
         configureStage(primaryStage, viewRoot);
-        RectangularMap rectangularMap = new RectangularMap(4,4);
+        RectangularMap rectangularMap = new RectangularMap(4,4, -4, -4);
         rectangularMap.addObserver(presenter);
         presenter.setWorldMap(rectangularMap);
     }

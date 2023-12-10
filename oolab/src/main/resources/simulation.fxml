@@ -16,6 +16,7 @@
             <Label fx:id="infoLabel" text="All animals will be living here!" textAlignment="CENTER"/>
             <TextField fx:id="movesTextField" promptText="Enter moves separated by comma"/>
             <Button text="Start" onAction="#onSimulationStartClicked"/>
+            <GridPane alignment="CENTER" fx:id="mapGrid" gridLinesVisible="true"/>
         </VBox>
     </center>
 </BorderPane>

@@ -39,7 +39,7 @@ public class SimulationTest {
         simulation.run();
         //Then
         List<Animal> animals = simulation.getAnimalList();
-        assertEquals(new Vector2d(2,2), animals.get(0).getPosition());
+        assertEquals(new Vector2d(2,3), animals.get(0).getPosition());
         assertEquals(new Vector2d(1, 2), animals.get(1).getPosition());
     }
 
@@ -54,7 +54,7 @@ public class SimulationTest {
         simulation.run();
         //Then
         List<Animal> animals = simulation.getAnimalList();
-        assertEquals(new Vector2d(2,2), animals.get(0).getPosition());
+        assertEquals(new Vector2d(2,3), animals.get(0).getPosition());
         assertEquals(new Vector2d(1, 2), animals.get(1).getPosition());
     }
 }
