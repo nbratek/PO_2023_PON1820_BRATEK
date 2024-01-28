@@ -3,21 +3,35 @@ package agh.ics.oop.model;
 public class Animal implements WorldElement {
     private MapDirection orientation;
     private Vector2d position;
+    private final String symbol;
 
     public Animal() {
         this.orientation = MapDirection.NORTH;
         this.position = new Vector2d(2, 2);
+        this.symbol ="";
     }
 
     public Animal(Vector2d vector2d) {
         this.orientation = MapDirection.NORTH;
         this.position = vector2d;
+        this.symbol = "";
+    }
+
+    public Animal(Vector2d vector2d, String symbol) {
+        this.orientation = MapDirection.NORTH;
+        this.position = vector2d;
+        this.symbol = symbol;
     }
 
 
     @Override
     public Vector2d getPosition() {
         return position;
+    }
+
+    @Override
+    public String getSymbol() {
+        return symbol;
     }
 
     @Override
